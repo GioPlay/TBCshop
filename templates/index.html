@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+Shop
+{% endblock %}
+{% block content %}
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/static/lenovo_web_9epz-k4.png" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/samsung_web-jw.png" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/honor_web_4nf9-sk.png" class="d-block w-100">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <div class="container-md">
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1">
+      {% for product in products %}
+          <div class="card" style="width: 18rem; margin: 20px;">
+          <img src="/static/{{ product.img }}" class="card-img-top" style="margin: 5px">
+          <div class="card-body">
+            <p class="card-title">{{ product.name }}</p>
+            <h3 class="card-text">{{ product.price }}<sup>₾</sup></h3>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="input-group">
+                  <div class="input-group-text bg-warning" style="display: flex; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
+                      <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9zM1 7v1h14V7zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5m2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                  </div>
+                  <a href="{{ url_for('view_product', product_id=product.id) }}" class="btn btn-warning px-5" style="margin-left: -1px;">
+                    ვრცლად
+                  </a>
+                </div>
+            {% if current_user.role == 'admin' %}
+            </li>
+              <li class="list-group-item">
+                  <a href="{{ url_for('edit_product', product_id=product.id) }}" class="btn btn-primary px-5" style="margin-left: -1px;">
+                      რედაქტირება</a>
+              </li>
+              <li class="list-group-item">
+                  <a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn btn-danger px-5" style="margin-left: -1px;">
+                      წაშლა</a>
+              </li>
+              {% endif %}
+          </ul>
+          </div>
+      {% endfor %}
+    </div>
+    </div>
+
+
+{% endblock %}

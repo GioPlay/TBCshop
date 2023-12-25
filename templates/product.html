@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}
+ {{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-white mt-5 border-topw border-bottom shadow">
+  <div  class="container">
+  <img src="/static/{{ product.img }}" width="400px" height="500px">
+  <table class="table">
+    <tbody>
+    <tr>
+      <th scope="row">სახელი</th>
+      <td> {{ product.name }}</td>
+    </tr>
+
+    <tr>
+      <th scope="row">ფასი</th>
+      <td> {{ product.price }}</td>
+    </tr>
+    <div class="actions">
+    <button class="primary-hover full-mobile btn btn-success" id="cart-button-z" style="
+            margin-bottom: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s ease;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.95153 11.6052C4.50443 11.6052 4.95741 12.0679 4.95741 12.6394C4.95741 13.204 4.50443 13.6667 3.95153 13.6667C3.39196 13.6667 2.93898 13.204 2.93898 12.6394C2.93898 12.0679 3.39196 11.6052 3.95153 11.6052ZM11.4457 11.6052C11.9986 11.6052 12.4516 12.0679 12.4516 12.6394C12.4516 13.204 11.9986 13.6667 11.4457 13.6667C10.8861 13.6667 10.4331 13.204 10.4331 12.6394C10.4331 12.0679 10.8861 11.6052 11.4457 11.6052ZM0.852802 0.333423L0.920689 0.339169L2.50945 0.583411C2.73594 0.624912 2.90248 0.814726 2.92246 1.04604L3.04903 2.57C3.06901 2.78839 3.24221 2.95167 3.45538 2.95167H12.4517C12.8581 2.95167 13.1245 3.09454 13.391 3.4075C13.6574 3.72046 13.7041 4.16948 13.6441 4.577L13.0113 9.04003C12.8914 9.89794 12.1719 10.53 11.3259 10.53H4.05824C3.17227 10.53 2.4395 9.83671 2.36623 8.93866L1.75337 1.52228L0.74749 1.34539C0.481031 1.29777 0.29451 1.03243 0.34114 0.760299C0.387771 0.48204 0.647568 0.297668 0.920689 0.339169L0.852802 0.333423ZM10.2601 5.46825H8.41485C8.13507 5.46825 7.91524 5.69276 7.91524 5.9785C7.91524 6.25744 8.13507 6.48876 8.41485 6.48876H10.2601C10.5399 6.48876 10.7597 6.25744 10.7597 5.9785C10.7597 5.69276 10.5399 5.46825 10.2601 5.46825Z" fill="currentColor"></path>
+        </svg>
+        <span>კალათაში დამატება</span>
+    </button>
+    </div>
+
+
+
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<style>
+  body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .product-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 20px;
+        }
+
+
+        .primary-hover:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .dark-hover:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .installment {
+            background-color: #3498db;
+            color: white;
+        }
+</style>
+{% endblock %}

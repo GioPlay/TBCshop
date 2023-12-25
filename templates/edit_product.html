@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <form method="post" enctype="multipart/form-data" action="{{ url_for('edit_product', product_id=product.id) }}">
+    {{ form.hidden_tag() }}
+         {% if form.errors %}
+    {% for field, errors in form.errors.items() %}
+      {% for error in errors %}
+        <div class="alert alert-danger" style="top: -30px">
+          {{ error }}
+        </div>
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+    <h2>პროდუქტის დამატება</h2>
+
+    {{ form.name(class="form-control mt-4", placeholder=form.name.label.text) }}
+    {{ form.price(class="form-control mt-4", placeholder=form.price.label.text) }}
+    {{ form.img(class="form-control mt-4", placeholder=form.img.label.text, accept=".img, .jpg, .jpeg")}}
+    {{ form.category(class="form-control mt-4", placeholder=form.category.label.text) }}
+
+    <div class="form-group">
+      {{ form.submit(class="btn btn-primary my-4") }}
+    </div>
+  </form>
+</div>
+
+{% endblock %}
